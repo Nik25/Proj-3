@@ -56,7 +56,6 @@
     activities.appendChild(totalAmount);
     activities.appendChild(priceSpan);  
 
-    
     //Button for registration
 
     const buttonRegister = document.querySelector("button"); 
@@ -202,7 +201,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     /**********************************************
     This part contains the functionality
     ***********************************************/
-     /*req 1. Focus on the first field
+    /*req 1. Focus on the first field
         1.1 On page load, the cursor appears in the "Name" field, ready for a user to type.*/
 
     //On page load focus on the first field -'name field' 
@@ -286,7 +285,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
          nodeJS.checked ? jsLibraries.disabled = true : jsLibraries.disabled = false;
     });
 
-
     /******************************************************************
      >>> TOTAL COST GETS MODIFIED AS USER SELECTS ONE OR MORE WORKSHOPS
     ********************************************************************/
@@ -308,8 +306,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
        priceSpan.style.color = 'Purple'; 
      });
           
-
-
     /***************************************************************************************************************************************************
      req 5.  Display payment sections based on the payment option chosen in the select menu.
             The "Credit Card" payment option should be selected by default, display the #credit-card div, and hide the "Paypal" and "Bitcoin information.
@@ -345,7 +341,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
             paypalDiv.style.display = "none";
         }
     });
-
                 
     /*****************************************************************************************************************************************************************************
      req 6. If any of the following validation errors exist, prevent the user from submitting the form:
