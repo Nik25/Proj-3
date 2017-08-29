@@ -96,8 +96,8 @@
     const cvvError = document.createElement("span");
     ccParent.insertBefore(cvvError, creditCardInfo);
 
-    //For Email validation
-    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+   //For Email validation
+   const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
  /****************************
   DOM CONTENT LOADED
@@ -105,9 +105,9 @@
 //The code is placed under DOMContentLoaded and it launches only after the page is loaded
 document.addEventListener("DOMContentLoaded", (e) => {
 
-   /****************************
+  /****************************
      FUNCTIONS
-   ****************************/
+  ****************************/
      
     //Hides the 'other' job title input field 
 
@@ -228,13 +228,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
         document.querySelector('[value="2016"]').remove();
     })(); 
 
-
-    /********************************************************
+    /****************************************************************************************************************
     req 2.  A text field that will be revealed when the "Other" option is selected from the "Job Role" drop down menu.
         Give the field an id of “other-title,” and add the placeholder text of "Your Job Role" to the field. 
 
-     >>>WHEN 'OTHER' IS SELECTED THEN SHOW THE 'YOUR JOB ROLE' FIELD 
-    ********************************************************/
+     -WHEN 'OTHER' IS SELECTED THEN SHOW THE 'YOUR JOB ROLE' FIELD 
+    *****************************************************************************************************************/
 
     jobTitle.addEventListener("change", (e) => {
         if (otherJobTitle.selected) {
@@ -245,7 +244,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
             hideError(jobError);
         }
     });
-
 
     /**********************************************************************************************************************
     req 3.  For the T-Shirt color menu, only display the color options that match the design selected in the "Design" menu.
@@ -369,7 +367,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       Program at least one of your error messages so that more information is provided depending on the error.
                 --> DONE, for Payment form registration validation
 
-    >>> REGISTRATION VALIDATION
+    - REGISTRATION VALIDATION
     ***************************************************************************************************************************************************************************/
 
     buttonRegister.addEventListener("click", (e) => {
@@ -511,7 +509,5 @@ document.addEventListener("DOMContentLoaded", (e) => {
                         }
                     }
                 }
-
-            
+             });
     });
-  });
