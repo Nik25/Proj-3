@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
      req 5.  Display payment sections based on the payment option chosen in the select menu.
             The "Credit Card" payment option should be selected by default, display the #credit-card div, and hide the "Paypal" and "Bitcoin information.
 
-     >>>BASED ON DROP DOWN SELECTION, CORRESPONDING PAYMENT SECTION INFO GETS DISPLAYED
+     -BASED ON DROP DOWN SELECTION, CORRESPONDING PAYMENT SECTION INFO GETS DISPLAYED
     *****************************************************************************************************************************************************/
     
     paymentMethodSelected.addEventListener("change", (e) => { 
