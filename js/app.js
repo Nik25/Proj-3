@@ -56,6 +56,7 @@
     activities.appendChild(totalAmount);
     activities.appendChild(priceSpan);  
 
+    
     //Button for registration
 
     const buttonRegister = document.querySelector("button"); 
@@ -95,8 +96,8 @@
     const cvvError = document.createElement("span");
     ccParent.insertBefore(cvvError, creditCardInfo);
 
-   //For Email validation
-   const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //For Email validation
+    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
  /****************************
   DOM CONTENT LOADED
@@ -104,9 +105,9 @@
 //The code is placed under DOMContentLoaded and it launches only after the page is loaded
 document.addEventListener("DOMContentLoaded", (e) => {
 
-  /****************************
+   /****************************
      FUNCTIONS
-  ****************************/
+   ****************************/
      
     //Hides the 'other' job title input field 
 
@@ -201,7 +202,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     /**********************************************
     This part contains the functionality
     ***********************************************/
-    /*req 1. Focus on the first field
+     /*req 1. Focus on the first field
         1.1 On page load, the cursor appears in the "Name" field, ready for a user to type.*/
 
     //On page load focus on the first field -'name field' 
@@ -227,7 +228,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
         document.querySelector('[value="2016"]').remove();
     })(); 
 
-    /****************************************************************************************************************
+
+    /******************************************************************************************************************
     req 2.  A text field that will be revealed when the "Other" option is selected from the "Job Role" drop down menu.
         Give the field an id of “other-title,” and add the placeholder text of "Your Job Role" to the field. 
 
@@ -243,6 +245,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             hideError(jobError);
         }
     });
+
 
     /**********************************************************************************************************************
     req 3.  For the T-Shirt color menu, only display the color options that match the design selected in the "Design" menu.
@@ -285,8 +288,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
          nodeJS.checked ? jsLibraries.disabled = true : jsLibraries.disabled = false;
     });
 
+
     /******************************************************************
-     >>> TOTAL COST GETS MODIFIED AS USER SELECTS ONE OR MORE WORKSHOPS
+     - TOTAL COST GETS MODIFIED AS USER SELECTS ONE OR MORE WORKSHOPS
     ********************************************************************/
 
     activities.addEventListener("change", (e) => {
@@ -306,11 +310,13 @@ document.addEventListener("DOMContentLoaded", (e) => {
        priceSpan.style.color = 'Purple'; 
      });
           
+
+
     /***************************************************************************************************************************************************
      req 5.  Display payment sections based on the payment option chosen in the select menu.
             The "Credit Card" payment option should be selected by default, display the #credit-card div, and hide the "Paypal" and "Bitcoin information.
 
-     -BASED ON DROP DOWN SELECTION, CORRESPONDING PAYMENT SECTION INFO GETS DISPLAYED
+     >>>BASED ON DROP DOWN SELECTION, CORRESPONDING PAYMENT SECTION INFO GETS DISPLAYED
     *****************************************************************************************************************************************************/
     
     paymentMethodSelected.addEventListener("change", (e) => { 
@@ -341,6 +347,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             paypalDiv.style.display = "none";
         }
     });
+
                 
     /*****************************************************************************************************************************************************************************
      req 6. If any of the following validation errors exist, prevent the user from submitting the form:
@@ -362,7 +369,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       Program at least one of your error messages so that more information is provided depending on the error.
                 --> DONE, for Payment form registration validation
 
-    - REGISTRATION VALIDATION
+    >>> REGISTRATION VALIDATION
     ***************************************************************************************************************************************************************************/
 
     buttonRegister.addEventListener("click", (e) => {
@@ -379,7 +386,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const zipCode = zipInput.value;
 
         //gets the cvv value provided by the user
-        const cvv = cvvInput.value;
+        const cvvCode = cvvInput.value;
 
             //ensure name field isn't left empty
             if (name === "") {
@@ -393,15 +400,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
             }
 
             //ensure email address validations
+            
             if (!validateEmail(emailAddress)) {
                 e.preventDefault();
                 emailInput.style.borderColor = "#f21010";
-                errorStyling(emailError);
+                errorStyling(emailError);   
                 emailError.textContent = "Fill in your valid email address.";
             } else if (validateEmail(emailAddress)) {
-                emailField.style.removeProperty("border");
+                emailInput.style.removeProperty("border"); 
                 hideError(emailError);
-            }
+            } 
+        
 
             //In case 'other' job role is selected, ensure that the 'other' job field is filled out 
             if (otherJobTitle.selected) {
@@ -468,41 +477,50 @@ document.addEventListener("DOMContentLoaded", (e) => {
                             hideError(ccError);
                         }
 
-                        /* Verification for whether zip code is : A) a number and/or; B) the right length- 5 digits number  */
-                        if (isNaN(parseInt(zipCode)) || zipCode.length !== 5) {
+                        // Verification for whether zip code is : A) a number and/or; B) the right length- 5 digits number  
+
+                           if (isNaN(zipCode)) {
                             e.preventDefault();
-                            zipInput.style.borderColor = "#f21010";
                             errorStyling(zipError);
-                            /*zipError.textContent = "Invalid zip code.";*/
-                            if (zipCode === "") {
+                            zipInput.style.borderColor = "#f21010";
+                            zipError.textContent = "Zip code can only have digits.";
+                            } else if (zipCode === "") {
+                                 e.preventDefault();
+                                errorStyling(zipError);
+                               zipInput.style.borderColor = "#f21010";
                                 zipError.textContent = "Fill in your zip code.";
-                            } else if (isNaN(parseInt(zipCode))) {
-                                zipError.textContent = "Zip code has to be a number.";
-                            } else if (zipCode.length > 0) {
-                                zipError.textContent = "Zip code has to be a 5 digit number.";
-                            }
-                        } else {
+                            }  else if(zipCode.length !==5 ) {
+                                e.preventDefault();
+                                errorStyling(zipError);
+                               zipInput.style.borderColor = "#f21010";
+                               zipError.textContent = "Zip code has to be an exactly 5 digit number.";
+                            }             
+                            else {
                             hideError(zipError);
                             zipInput.style.removeProperty("border");
-                        }
-
+                        } 
+                       
                         // Verify to see that CVV is exactly 3 digits long
-                        if (cvv.length !== 3 || isNaN(parseInt(cvv))) {
+                        if (isNaN(cvvCode)) {
                             e.preventDefault();
-                            cvvInput.style.borderColor = "#f21010";
                             errorStyling(cvvError);
-                            if (cvv === "") {
-                                cvvError.textContent = "Fill in your CVV code.";
-                            } else if (isNaN(parseInt(cvv))) {
-                                cvvError.textContent = "CVV code has to be a number.";
-                            } else if (cvv.length < 3 || cvv.length > 3) {
-                                cvvError.textContent = "CVV code has to be a 3 digit number.";
-                            }
-                        } else {
+                            cvvInput.style.borderColor = "#f21010";
+                            cvvError.textContent = "CVV code can only have digits.";
+                            } else if (cvvCode === "") {
+                            e.preventDefault();
+                            errorStyling(cvvError);
+                            cvvInput.style.borderColor = "#f21010";
+                            cvvError.textContent = "Fill in your CVV code.";
+                            } else if (cvvCode.length!==3) {
+                             e.preventDefault();
+                            errorStyling(cvvError);
+                            cvvInput.style.borderColor = "#f21010";
+                            cvvError.textContent = "CVV code has to be an exactly 3 digit number.";
+                            } else {
                             cvvInput.style.removeProperty("border");
                             hideError(cvvError);
                         }
                     }
-                }
-             });
-    });
+                } 
+            }); 
+     });
